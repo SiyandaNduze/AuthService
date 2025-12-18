@@ -1,7 +1,17 @@
+### Register
+POST https://localhost:7165/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "user@test.com",
+  "password": "Password123!"
+}
+
+### Login
 POST https://localhost:7165/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "test@test.com",
+  "email": "user@test.com",
   "password": "Password123!"
 }
