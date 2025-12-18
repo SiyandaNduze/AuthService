@@ -1,4 +1,5 @@
-﻿using Auth.Domain.Entities;
+﻿using Auth.Domain;
+using Auth.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Auth.Infrastructure.Persistence;
@@ -10,7 +11,7 @@ public class AuthDbContext : DbContext
     {
     }
 
-    public DbSet<User> Users => Set<User>();
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -18,8 +19,12 @@ public class AuthDbContext : DbContext
         {
             entity.HasKey(u => u.Id);
             entity.HasIndex(u => u.Email).IsUnique();
-            entity.Property(u => u.Email).IsRequired();
-            entity.Property(u => u.PasswordHash).IsRequired();
+        });
+
+        modelBuilder.Entity<RefreshToken>(entity =>
+        {
+            entity.HasKey(rt => rt.Id);
+            entity.HasIndex(rt => rt.Token).IsUnique();
         });
     }
 }
