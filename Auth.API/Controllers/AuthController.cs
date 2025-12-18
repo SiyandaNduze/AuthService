@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Auth.Contracts.Requests;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore;
+using Auth.Application.Interfaces;
+using Auth.Domain.Entities;
 
 namespace Auth.API.Controllers
 {
@@ -42,7 +42,7 @@ namespace Auth.API.Controllers
                 return BadRequest("User already exists");
 
             var hash = _hasher.Hash(request.Password);
-            var user = User.Create(request.Email, hash);
+            var user = Auth.Domain.Entities.User.Create(request.Email, hash);
 
             await _users.AddAsync(user);
 

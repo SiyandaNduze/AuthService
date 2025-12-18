@@ -1,5 +1,6 @@
 ﻿using Auth.Contracts;
 using Auth.Domain.Entities;
+using Auth.Application.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

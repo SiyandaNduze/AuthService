@@ -1,8 +1,8 @@
 ﻿using Auth.Domain.Entities;
 using Auth.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-
-namespace Auth.Infrastructure;
+using Auth.Application.Interfaces;
+namespace Auth.Infrastructure.UserRepository;
 
 public class UserRepository : IUserRepository
 {

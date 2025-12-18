@@ -11,7 +11,8 @@ public class AuthDbContext : DbContext
     {
     }
 
-    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+    public DbSet<User> Users { get; set; } = null!;
+    public DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -19,12 +20,14 @@ public class AuthDbContext : DbContext
         {
             entity.HasKey(u => u.Id);
             entity.HasIndex(u => u.Email).IsUnique();
+            entity.Property(u => u.Email).IsRequired();
+            entity.Property(u => u.PasswordHash).IsRequired();
         });
 
         modelBuilder.Entity<RefreshToken>(entity =>
         {
-            entity.HasKey(rt => rt.Id);
-            entity.HasIndex(rt => rt.Token).IsUnique();
+            entity.HasKey(r => r.Id);
+            entity.HasIndex(r => r.Token).IsUnique();
         });
     }
 }

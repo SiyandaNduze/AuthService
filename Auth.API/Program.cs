@@ -1,5 +1,6 @@
-using Auth.Infrastructure;
 using Auth.Infrastructure.Persistence;
+using Auth.Infrastructure.UserRepository;
+using Auth.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
