@@ -1,7 +1,1 @@
-﻿namespace Auth.Contracts
-{
-    public class Class1
-    {
-
-    }
-}
+﻿public record AuthResult(string AccessToken, string RefreshToken);
