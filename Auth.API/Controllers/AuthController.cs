@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using Auth.Contracts.Requests;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore;
 
 namespace Auth.API.Controllers
 {
@@ -29,6 +32,21 @@ namespace Auth.API.Controllers
                 return Unauthorized();
 
             return Ok(_tokens.GenerateTokens(user));
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(RegisterRequests request)
+        {
+            var existing = await _users.GetByEmailAsync(request.Email);
+            if (existing != null)
+                return BadRequest("User already exists");
+
+            var hash = _hasher.Hash(request.Password);
+            var user = User.Create(request.Email, hash);
+
+            await _users.AddAsync(user);
+
+            return Ok();
         }
     }
 }

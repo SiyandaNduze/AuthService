@@ -1,3 +1,4 @@
-﻿namespace Auth.Contracts.Requests;
-
-public record RegisterRequest(string Email, string Password);
+﻿namespace Auth.Contracts.Requests
+{
+    public record RegisterRequests(string Email, string Password);
+}
