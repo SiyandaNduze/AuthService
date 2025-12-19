@@ -1,3 +1,5 @@
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYWU3NTJkOC1kNTRmLTQ1ZDQtOTBlNi1mNDA1ZTU2NDM5YWEiLCJlbWFpbCI6InVzZXJAdGVzdC5jb20iLCJleHAiOjE3NjYxNTUzNzUsImlzcyI6IkF1dGhTZXJ2aWNlIiwiYXVkIjoiQXV0aENsaWVudHMifQ.mhdqG3zHxLifFqratTSBMUW5Hru6Fujev6g2l3YibOU
+
 ### Register
 POST https://localhost:7165/api/auth/register
 Content-Type: application/json
@@ -15,3 +17,7 @@ Content-Type: application/json
   "email": "user@test.com",
   "password": "Password123!"
 }
+
+### Protected Endpoint
+GET https://localhost:7165/api/secure
+Authorization: Bearer {{accessToken}}
