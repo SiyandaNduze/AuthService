@@ -21,3 +21,6 @@ Content-Type: application/json
 ### Protected Endpoint
 GET https://localhost:7165/api/secure
 Authorization: Bearer {{accessToken}}
+
+GET https://localhost:7165/api/secure/admin
+Authorization: Bearer {{accessToken}}

@@ -11,6 +11,12 @@ namespace Auth.API.Controllers
         [HttpGet]
         public IActionResult Get()
             => Ok("You are authenticated");
-    }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin")]
+        public IActionResult AdminOnly()
+        {
+            return Ok("Admin access granted");
+        }
+    }
 }

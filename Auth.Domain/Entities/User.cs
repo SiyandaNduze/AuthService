@@ -8,6 +8,12 @@ public class User
     public bool EmailVerified { get; private set; }
     public bool IsLocked { get; private set; }
     public DateTime CreatedAt { get; private set; }
+    public string Role { get; private set; } = "User";
+
+    public void AssignRole(string role)
+    {
+        Role = role;
+    }
 
     private User() { }
 
@@ -23,4 +29,5 @@ public class User
             CreatedAt = DateTime.UtcNow
         };
     }
+    public ICollection<RefreshToken> RefreshTokens { get; private set; } = new List<RefreshToken>();
 }

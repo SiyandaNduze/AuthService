@@ -1,6 +1,7 @@
+using Auth.Application.Interfaces;
+using Auth.Infrastructure;
 using Auth.Infrastructure.Persistence;
 using Auth.Infrastructure.UserRepository;
-using Auth.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -33,6 +34,7 @@ builder.Services.AddAuthentication("Bearer")
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<ITokenService, JwtTokenService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 
 var app = builder.Build();
 

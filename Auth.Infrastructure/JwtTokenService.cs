@@ -1,10 +1,11 @@
-﻿using Auth.Contracts;
+﻿using Auth.Application.Interfaces;
+using Auth.Contracts;
 using Auth.Domain.Entities;
-using Auth.Application.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 public class JwtTokenService : ITokenService
@@ -26,7 +27,8 @@ public class JwtTokenService : ITokenService
         var claims = new[]
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email)
+            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(ClaimTypes.Role, user.Role)
         };
 
         var token = new JwtSecurityToken(
@@ -41,5 +43,9 @@ public class JwtTokenService : ITokenService
             new JwtSecurityTokenHandler().WriteToken(token),
             Guid.NewGuid().ToString()
         );
+    }
+    public string GenerateRefreshToken()
+    {
+        return Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
     }
 }
